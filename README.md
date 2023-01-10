@@ -11,6 +11,8 @@ This package enables you to code resilient services that will automatically fall
 
 Things are great when they work, but sometimes they don't. And even if that's just 0.001% of the time, sometimes that data we're handling is incredibly important and we need fallbacks in scenarios where our services are down.
 
+The idea of this package is to keep your code clean and simple. Define the services you'd use, and in which order, and then when it comes to calling your services, it's all handled within one line. This keeps you code clean and readable, and takes out the hassle of loops, try catches, enumerable injection, etc.
+
 ## Usage
 
 1.  Define an interface for whatever you need to do
@@ -93,3 +95,7 @@ A: Argument values will be ignored, only types are honoured - You should instead
 Q: What happens if all my services throw an exception and there are no more fallbacks?
 
 A: A `ResilientServicesFailedException` will be thrown back to the caller, containing inner exceptions with the failures
+
+Q: Can I still unit test?
+
+A: The injection `Resilient<T>` is an interface, so you can fully mock this
