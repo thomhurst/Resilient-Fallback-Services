@@ -18,7 +18,7 @@ Things are great when they work, but sometimes they don't. And even if that's ju
 3.  Register these implementations in your ServiceCollection in startup, under that interface, as you generally would
 4.  On your ServiceCollection, call `AddResilientService<[MyInterfaceType]>` - Passing in the type of your interface
 5.  Chain calls to this, setting up your primary implementation and then the order of your fallbacks
-6.  Optionally set any configuration, such as a handler for a handled exception (when an exception occurs, but we handle it and then execute the fallback service)
+6.  Optionally set any configuration, such as a handler for a handled exception (when an exception occurs, but we handle it and then execute the fallback service), or method + exception combinations where you wouldn't want to fallback during a particular exception
 7.  Wherever you want to use this service, inject in `Resilient<[MyInterfaceType]>`
 
 This might look like this:
