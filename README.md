@@ -64,6 +64,14 @@ public class MyService
 }
 ```
 
+You can also validate your services once your ServiceProvider has been built
+
+```csharp
+var serviceProvider = services.BuildServiceProvider();
+
+serviceProvider.ValidateResilientServices();
+```
+
 ## Flow
 
 Using the above as an example, here's what's happening.
