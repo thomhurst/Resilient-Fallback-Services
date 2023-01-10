@@ -96,3 +96,6 @@ Q: What happens if all my services throw an exception and there are no more fall
 
 Q: Can I still unit test?
 > A: The injected `Resilient<T>` is an interface, so you can fully mock this
+
+Q: What's the first argument for the `ConfigureExceptionToNotFallbackOn` method?
+> A: A method. In the delegate, call your method. This allows the library to grab a 'handle' to that method, so we know which method to apply this exception rule to.
