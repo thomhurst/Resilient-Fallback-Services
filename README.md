@@ -89,13 +89,10 @@ Using the above as an example, here's what's happening.
 ## FAQ
 
 Q: How do you configure arguments to your method in the `ConfigureExceptionToNotFallbackOn` method?
-
-A: Argument values will be ignored, only types are honoured - You should instead use `Argument.Of<T>` for readability
+> A: Argument values will be ignored, only types are honoured - You should instead use `Argument.Of<T>` for readability
 
 Q: What happens if all my services throw an exception and there are no more fallbacks?
-
-A: A `ResilientServicesFailedException` will be thrown back to the caller, containing inner exceptions with the failures
+> A: A `ResilientServicesFailedException` will be thrown back to the caller, containing inner exceptions with the failures
 
 Q: Can I still unit test?
-
-A: The injection `Resilient<T>` is an interface, so you can fully mock this
+> A: The injected `Resilient<T>` is an interface, so you can fully mock this
