@@ -2,30 +2,28 @@
 
 internal class Implementation
 {
-    public Type Type { get; }
-    public object Instance { get; }
-    public Func<IServiceProvider,object> Factory { get; }
+    public Type? Type { get; }
+    public object? Instance { get; }
+    public Func<IServiceProvider,object>? Factory { get; }
 
     protected Implementation(Type type)
     {
         Type = type;
     }
     
-    protected Implementation(object instance)
+    protected Implementation(object? instance)
     {
-        Instance = instance;
+        Instance = instance ?? throw new ArgumentNullException(nameof(instance));
     }
 
     protected Implementation(Func<IServiceProvider,object> factory)
     {
-        Factory = factory;
+        Factory = factory ?? throw new ArgumentNullException(nameof(factory));
     }
 }
 
 internal class Implementation<T> : Implementation
 {
-    public Type Type { get; } = typeof(T);
-
     public Implementation(T instance) : base(instance)
     {
     }

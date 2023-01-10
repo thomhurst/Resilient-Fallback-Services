@@ -7,11 +7,9 @@ public static class Argument
 
 public struct Argument<T>
 {
-    internal T defaultValue = default;
-
     public Argument()
     {
     }
 
-    public static implicit operator T(Argument<T> argument) => argument.defaultValue;
+    public static implicit operator T(Argument<T> argument) => default!;
 }

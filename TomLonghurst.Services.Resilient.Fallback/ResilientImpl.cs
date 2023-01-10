@@ -163,27 +163,27 @@ internal class ResilientImpl<T> : Resilient<T> where T : class
         throw new ResilientServicesFailedException<T>(caughtExceptions);
     }
 
-    private IEnumerable<T?> GetImplementations()
+    private IEnumerable<T> GetImplementations()
     {
-        var registeredUnderInterface = _serviceProvider.GetServices(typeof(T));
+        var registeredUnderInterface = _serviceProvider.GetServices(typeof(T)).ToArray();
         
         foreach (var implementation in _thenResilientServiceBuilder.Implementations)
         {
             if (implementation.Instance != null)
             {
-                yield return implementation.Instance as T;
+                yield return (T) implementation.Instance;
                 continue;
             }
 
             if (implementation.Factory != null)
             {
-                yield return implementation.Factory(_serviceProvider) as T;
+                yield return (T) implementation.Factory(_serviceProvider);
                 continue;
             }
-            
-            yield return registeredUnderInterface.FirstOrDefault(x => x.GetType() == implementation.Type) as T
-                         ?? ActivatorUtilities.GetServiceOrCreateInstance(_serviceProvider,
-                             implementation.Type) as T;
+
+            yield return (T)(registeredUnderInterface.FirstOrDefault(x => x!.GetType() == implementation.Type)
+                             ?? ActivatorUtilities.GetServiceOrCreateInstance(_serviceProvider,
+                                 implementation.Type!));
         }
     }
 

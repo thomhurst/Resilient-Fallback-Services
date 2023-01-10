@@ -6,7 +6,7 @@ namespace TomLonghurst.Services.Resilient.Fallback.Builders;
 public class IncompleteResilientServiceBuilder<T> : IIncompleteResilientServiceBuilder
 {
     private readonly IServiceCollection _services;
-    private ServiceDescriptor _serviceDescriptor;
+    private ServiceDescriptor _serviceDescriptor = null!;
 
     internal IncompleteResilientServiceBuilder(IServiceCollection services)
     {
